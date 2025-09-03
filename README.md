@@ -60,5 +60,6 @@ https://expressjs.com/en/guide/routing.html
 
 See /gitignore/README.md for additional notes.  When reviewing, see all assignments and documentation in this module.
 
-
+Populate project and task routes, then controllers
+Split project-task into child of project, and task.
 
