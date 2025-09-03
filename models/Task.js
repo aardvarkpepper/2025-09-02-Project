@@ -19,7 +19,7 @@ const taskSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  user: {
+  project: {
     type: Schema.Types.ObjectId,
     //https://mongoosejs.com/docs/schematypes.html#objectids
     // for user's ObjectId.
