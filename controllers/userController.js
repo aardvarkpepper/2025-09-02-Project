@@ -48,15 +48,8 @@ const login = async (req, res) => {
   const correctPw = await isThereAUserWithThisEmail.isCorrectPassword(password);
 
   if (!correctPw) {
-    res.status(400).json({ message: "Incorrect password.  Noted vague error messages may be desirable for security purposes" });
-    return;
+    return res.status(400).json({ message: "Incorrect password.  Noted vague error messages may be desirable for security purposes" });
   }
-
-  // else {
-  //   console.log('Proceeding to JWT generation.');
-  //   //res.status(200).json({message: 'Activity complete'}); // commnent this out later.
-  //   // no return as not halting process.
-  // }
 
   // JWT below
   const secret = process.env.JWT_SECRET;

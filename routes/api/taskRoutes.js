@@ -1,13 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const userController = require('../../controllers/userController');
+const verifyAuthentication = require('../../utils/authMiddleware');
 
-router.get('/', userController.getAllUsers);
-router.get('/:id', userController.getUser);
-router.put('/:id', userController.updateUser);
-router.delete('/:id', userController.deleteUser);
+const { updateTaskById, deleteTaskById } = require('../../controllers/projectController');
 
-router.post('/register', userController.registerUser);
-router.post('/login', userController.login)
+// get '/' and post '/' are located in projectRoutes / projectController, as functionality is tied to project ID.
+router.put('/:id', updateTaskById);
+router.delete('/:id', deleteTaskById);
  
 module.exports = router;
