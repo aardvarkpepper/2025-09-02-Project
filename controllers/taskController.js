@@ -15,10 +15,10 @@ const updateTaskById = async (req, res) => {
       return res.status(404).json({ message: 'No task found with this id!' });
     }
 
-    const projectRetrieved = await Project.findOne({ _id: taskRetrieved.project });
+    const projectRetrieved = await Project.findOne({ _id: String(taskRetrieved.project) });
 
     if (!projectRetrieved) {
-      return res.status(404).json({ message: `No project with ID ${taskRetrieved.project} found!` });
+      return res.status(404).json({ message: `No project with ID ${String(taskRetrieved.project)} found!` });
     }
 
     if (String(projectRetrieved.user) !== req.user._id) {
@@ -33,7 +33,7 @@ const updateTaskById = async (req, res) => {
 
     return res.status(201).json({ message: 'Updated task', updatedTask }); // note that projectId must be added to sampleData for sample reference!
   } catch (err) {
-    return res.status(400).json(err);
+    return res.status(400).json({ message: 'Error updating task', err});
   }
 }; // updateTaskById
 
@@ -49,10 +49,10 @@ const deleteTaskById = async (req, res) => {
       return res.status(404).json({ message: 'No task found with this id!' });
     }
 
-    const projectRetrieved = await Project.findOne({ _id: taskRetrieved.project });
+    const projectRetrieved = await Project.findOne({ _id: String(taskRetrieved.project) });
 
     if (!projectRetrieved) {
-      return res.status(404).json({ message: `No project with ID ${taskRetrieved.project} found!` });
+      return res.status(404).json({ message: `No project with ID ${String(taskRetrieved.project)} found!` });
     }
 
     if (String(projectRetrieved.user) !== req.user._id) {
@@ -62,11 +62,12 @@ const deleteTaskById = async (req, res) => {
     // By now, we know the user is logged in, the project exists, and the project belongs to the user.  Execution halts either by throwing Error or returning res if any of the previous is true; the execution by err stops as it's the last command in the function (also explicit return added).
 
     // So we can now delete a task belonging to the project belonging to the user.
-    const deletedTask = await User.findByIdAndDelete(userId);
+    console.log('Id', req.params.id);
+    const deletedTask = await Task.findByIdAndDelete(req.params.id);
 
     return res.status(201).json({ message: 'Deleted task', deletedTask }); // note that projectId must be added to sampleData for sample reference!
   } catch (err) {
-    return res.status(400).json(err);
+    return res.status(400).json({ message: 'Error deleting task', err});
   }
 }; // deleteTaskById
 

@@ -137,17 +137,17 @@ const getAllTasksByProject = async (req, res) => {
     // replicating getProjectById functionality; later figure out passing reference.
     const projectRetrieved = await Project.findById(req.params.projectId);
     if (!projectRetrieved) {
-      return res.status(404).json({ message: `No project found with ID:${req.params.ProjectId}!` });
+      return res.status(404).json({ message: `No project found with ID:${req.params.projectId}!` });
     }
     if (String(projectRetrieved.user) !== req.user._id) {
-      return res.status(403).json({ messsage: `403 Forbidden; user is not authorized to access all tasks of ${req.params.ProjectId} as project does not belong to this user.` });
+      return res.status(403).json({ messsage: `403 Forbidden; user is not authorized to access all tasks of ${req.params.projectId} as project does not belong to this user.` });
     }
 
     // By now, we know the user is logged in, the project exists, and the project belongs to the user.  Execution halts either by throwing Error or returning res if any of the previous is true; the execution by err stops as it's the last command in the function (also explicit return added).
 
     // So we can now create a task belonging to the project belonging to the user.
-    const tasks = await Task.find({ project: req.params.ProjectId });
-    return res.json({tasks: tasks, message: `All tasks for project:${req.params.ProjectId}`});
+    const tasks = await Task.find({ project: req.params.projectId });
+    return res.json({ tasks, message: `All tasks for project:${req.params.projectId}`});
   } catch (err) {
     return res.status(500).json(err);
   }

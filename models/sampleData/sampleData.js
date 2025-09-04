@@ -85,18 +85,19 @@ const projectArray = [
  */
 
 // must populate ""project"" with "project" object IDs.  Pull from samples.
+// test status // test for enum / runValidators failure; change "To Do" after
 const taskArray = [
   {
     "title": "Task Title 1",
     "description": "Task Description 1",
-    "status": "to do", // test for enum / runValidators failure; change "To Do" after
-    "project": "placeholder"
+    "status": "To Do", 
+    "project": "68b97ee2bb294522aedb979b"
   },
   {
     "title": "Task Title 2",
     "description": "Task Description 2",
     "status": "In Progress",
-    "project": "placeholder"
+    "project": "68b97ee2bb294522aedb979b"
   },
   {
     "title": "Task Title 3",
@@ -105,3 +106,49 @@ const taskArray = [
     "project": "placeholder"
   },
 ]
+/**
+ * Note these do NOT show status.
+ * 
+ * http://localhost:3000/api/projects/68b97ee2bb294522aedb979b/tasks
+ *          {
+            "status": "To Do",
+            "_id": "68b98360f7b5d4d96c03d6b5",
+            "title": "Task Title 1",
+            "description": "Task Description 1",
+            "project": "68b97ee2bb294522aedb979b",
+            "createdAt": "2025-09-04T12:17:36.991Z",
+            "__v": 0
+        },
+        {
+            "status": "To Do",
+            "_id": "68b98374f7b5d4d96c03d6b8",
+            "title": "Task Title 2",
+            "description": "Task Description 2",
+            "project": "68b97ee2bb294522aedb979b",
+            "createdAt": "2025-09-04T12:17:56.396Z",
+            "__v": 0
+        },
+        {
+            "status": "To Do",
+            "_id": "68b9853a1c256b17aca97696",
+            "title": "Task Title 3",
+            "description": "Task Description 3",
+            "project": "68b97ee2bb294522aedb979b",
+            "createdAt": "2025-09-04T12:25:30.925Z",
+            "__v": 0
+        }
+
+        PUT http://localhost:3000/api/tasks/68b98360f7b5d4d96c03d6b5
+        {
+    "message": "Updated task",
+    "updatedTask": {
+        "_id": "68b98360f7b5d4d96c03d6b5",
+        "title": "Task Title 1A",
+        "description": "Task Description 1A",
+        "project": "68b97ee2bb294522aedb979b",
+        "createdAt": "2025-09-04T12:17:36.991Z",
+        "__v": 0,
+        "status": "Done"
+    }
+}
+ */

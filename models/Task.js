@@ -13,7 +13,9 @@ const taskSchema = new Schema({
     required: true,
   },
   status: {
+    type: String,
     enum: ['To Do', 'In Progress', 'Done'], // using enum for example; actually wouldn't want to limit - or would import/export all potentially changing values in a single file.
+    default: 'To Do'
   },
   createdAt: {
     type: Date,
