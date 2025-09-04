@@ -1,3 +1,25 @@
+## Setup
+
+Project created by creating directory, navigating into directory in bash, then entering
+
+npm init -y
+
+to initialize package.json.  Then,
+
+npm i bcrypt dotenv express jsonwebtoken mongoose
+
+to install dependencies.  .gitignore file created with node_modules/, .env, and /gitignore.  node_modules/ not in git as common dependencies can be downloaded by user separately using procedure mentioned above.  .env contains sensitive data so is not publicized on Github.  /gitignore contains some personal reference notes.
+
+You will need to install packages as listed above to get your own node_modules.
+
+In your .env, you will need
+
+MONGO_URI=...
+PORT=...
+JWT_SECRET=...
+
+where MONGO_URI contains your reference to a MongoDB database, PORT is a number (typically 3000), JWT_SECRET is the secret you want to use with jsonwebtoken to generate JWTs.
+
 ## Reflection
 
 Planning data models and API endpoints mostly reactive based on assignment rather than proactive.  The assignment gives a defined structure that's consistent (within my limited experience) with a subset of best practices, which defines relationships between users, projects, and tasks.  The information each model needs is provided by the assignment; routes required are provided by assignment.
