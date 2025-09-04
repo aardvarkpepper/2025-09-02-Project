@@ -6,7 +6,7 @@ const apiRoutes = require('./api/index');
 router.use('/api', apiRoutes);
  
 router.use((req, res) => {
-  res.status(404).send(`<h1>404 Error</h1> <div>Please visit http://localhost:${process.env.PORT || 3000}/api/users to log in, api/projects, or api/tasks.</div>`);
+  res.status(404).send(`<h1>404 Error</h1> <div>Please visit http://localhost:${process.env.PORT || 3000}/api/users/register to register, api/users/login to log in, api/projects, or api/tasks.</div>`);
 });
 // Triggers on anything not starting with /api, I suppose.
 // Review how 'wildcard' routing is handled, and SQL injection (and other) attacks, including including enough in parameters/query to crash URL

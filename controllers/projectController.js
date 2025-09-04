@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const Project = require('../../models/Project');
-const Task = require('../../models/Task');
+const Project = require('../models/Project');
+const Task = require('../models/Task');
 
 // split out child router later
 
@@ -31,7 +31,7 @@ const getProjectById = async (req, res) => {
     if (!project) {
       return res.status(404).json({ message: 'No project found with this id!' });
     }
-    if (project.user !== req.user._id) {
+    if (String(project.user) !== req.user._id) {
       return res.status(403).json({ messsage: '403 Forbidden; user is not authorized to view this project.' });
     }
     res.status(201).json(project);
@@ -111,7 +111,7 @@ const createTask = async (req, res) => {
     if (!projectRetrieved) {
       return res.status(404).json({ message: 'No project found with this id!' });
     }
-    if (projectRetrieved.user !== req.user._id) {
+    if (String(projectRetrieved.user) !== req.user._id) {
       return res.status(403).json({ messsage: '403 Forbidden; user is not authorized to add a task to this project as project does not belong to this user.' });
     }
 
@@ -139,7 +139,7 @@ const getAllTasksByProject = async (req, res) => {
     if (!projectRetrieved) {
       return res.status(404).json({ message: `No project found with ID:${req.params.ProjectId}!` });
     }
-    if (projectRetrieved.user !== req.user._id) {
+    if (String(projectRetrieved.user) !== req.user._id) {
       return res.status(403).json({ messsage: `403 Forbidden; user is not authorized to access all tasks of ${req.params.ProjectId} as project does not belong to this user.` });
     }
 

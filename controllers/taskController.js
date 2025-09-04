@@ -1,7 +1,7 @@
 
 const router = require('express').Router();
-const Project = require('../../models/Project');
-const Task = require('../../models/Task');
+const Project = require('../models/Project');
+const Task = require('../models/Task');
 
 const updateTaskById = async (req, res) => {
   try {
@@ -21,7 +21,7 @@ const updateTaskById = async (req, res) => {
       return res.status(404).json({ message: `No project with ID ${taskRetrieved.project} found!` });
     }
 
-    if (projectRetrieved.user !== req.user._id) {
+    if (String(projectRetrieved.user) !== req.user._id) {
       return res.status(403).json({ messsage: '403 Forbidden; user is not authorized to update task, as corresponding project does not belong to this user.' });
     }
 
@@ -55,7 +55,7 @@ const deleteTaskById = async (req, res) => {
       return res.status(404).json({ message: `No project with ID ${taskRetrieved.project} found!` });
     }
 
-    if (projectRetrieved.user !== req.user._id) {
+    if (String(projectRetrieved.user) !== req.user._id) {
       return res.status(403).json({ messsage: '403 Forbidden; user is not authorized to delete task, as corresponding project does not belong to this user.' });
     }
 

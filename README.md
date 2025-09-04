@@ -20,6 +20,19 @@ JWT_SECRET=...
 
 where MONGO_URI contains your reference to a MongoDB database, PORT is a number (typically 3000), JWT_SECRET is the secret you want to use with jsonwebtoken to generate JWTs.
 
+In console, use 'node server.js' to start the server and connect to your MongoDB database.
+
+### Nodemon
+
+(as in 'Node Monitor')
+If you are familiar with nodemon, you may use in console
+npm i nodemon --save-dev
+Npx nodemon server.js (to run server)
+
+As package.json has "main": "server.js", server may also be started with
+
+nodemon
+
 ## Reflection
 
 Planning data models and API endpoints mostly reactive based on assignment rather than proactive.  The assignment gives a defined structure that's consistent (within my limited experience) with a subset of best practices, which defines relationships between users, projects, and tasks.  The information each model needs is provided by the assignment; routes required are provided by assignment.
@@ -84,4 +97,3 @@ See /gitignore/README.md for additional notes.  When reviewing, see all assignme
 
 Populate project and task routes, then controllers
 Split project-task into child of project, and task.
-

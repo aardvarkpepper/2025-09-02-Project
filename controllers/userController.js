@@ -2,7 +2,7 @@
 // Remember, bcrypt on password is handled through User.pre.  bcrypt on password comparison is handled through a custom method defined on User, invoked in this controller.
 // There is no JWT check token functionality here.  The assignment only requires register and login, and neither strictly checks JWT tokens - just generates.
 const router = require('express').Router();
-const User = require('../../models/User');
+const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 
 const registerUser = async (req, res) => {
